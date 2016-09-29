@@ -1,3 +1,3 @@
 Git is a version control system
 Git is free software
-manage change
+Git tracks changes
