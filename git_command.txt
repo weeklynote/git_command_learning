@@ -1,0 +1,53 @@
+git config命令的--global参数表示所有的Git仓库都会使用这个配置
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+
+未被添加过的文件状态是untracked
+添加文件到仓库，文件修改添加到暂存区
+$ git add readme.txt
+提交文件到仓库，把暂存区的所有内容提交到当前分支
+git commit -m "wrote a readme file"
+git commit命令，-m后面输入的是本次提交的说明(说明最好是有意义的)
+commit可以一次提交很多文件，所以可以多次add不同的文件
+
+$ git status
+git status命令可以让我们时刻掌握仓库当前的状态
+
+$ git diff readme.txt 
+查看修改了什么内容
+
+$ git reset --hard HEAD^
+版本回退，上一个版本就是HEAD^，上上一个版本就是HEAD^^，往上100个版本写成HEAD~100。
+
+$ git reset --hard cdca9c
+回退到指定版本，commit id是cdca9c...,没必要写全，前几位就可以了，当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了
+$ git log --pretty=oneline
+cdca9c11a4fc14d360bdec2f33addc415db334b4 add new command lines
+469cc3b4cfedffd376ff1030a6959d754930de39 add git command use record
+df4c46c57ba5df5b005a79a36973fbfebc99af56 wrote a readme file
+以上方式适用于从当前版本回退到老版本之后再恢复到最新版本
+
+git reflog用来记录你的每一次命令，这个命令可以找到所有的commit id
+
+git checkout -- readme.txt
+把readme.txt文件在工作区的修改全部撤销
+
+git checkout -- readme.txt （适合撤销在工作区的修改）
+把readme.txt文件在工作区的修改全部撤销,如果还没有把文件修改提交到工作区，可通过git status的结果提示选择相应的命令
+
+git reset HEAD readme.txt 此时已经使用了git add命令，适合暂存区的修改，再结合git checkout -- file命令可以进一步撤销
+暂存区的修改撤销掉（unstage），重新放回工作区
+
+如果已经提交到本地版本库，也可以通过回退版本来实现撤销，如果已经同步到远程仓库，那就只能上帝保佑了
+
+rm test.txt  删除文件
+这个命令之后有两个选择：
+1.确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit
+a.git rm test.txt
+b.git commit -m "remove test.txt"
+现在文件就从版本库中被删除了
+2.删错了，需要恢复
+a.git checkout -- test.txt进行撤销
+
+命令git rm用于删除一个文件。
+如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
