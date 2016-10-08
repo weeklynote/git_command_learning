@@ -51,3 +51,46 @@ a.git checkout -- test.txt进行撤销
 
 命令git rm用于删除一个文件。
 如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
+
+git clone https://github.com/liujinjiaer/developer 克隆远程仓库的代码
+
+$ git checkout -b dev  创建dev分支然后切换到dev分支
+git checkout命令加上-b参数表示创建并切换，相当于以下两条命令
+$ git branch dev
+$ git checkout dev
+Switched to branch 'dev'
+
+git branch命令查看当前分支
+
+git merge命令用于合并指定分支到当前分支
+
+$ git branch -d dev 合并后就可以删除分支了
+
+git log --graph --pretty=oneline --abbrev-commit  可以查看分支的合并情况
+
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+用git log --graph命令可以看到分支合并图。
+
+分支管理策略
+
+通常合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+--no-ff方式的git merge
+git merge --no-ff -m "merge with no-ff" dev
+
+Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
+
+
+git stash命令用来把当前工作现场保存起来，当工作没有完成时使用
+git stash list命令用来查看工作现场保存的位置
+git stash的回复
+a.用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除
+b.用git stash pop，恢复的同时把stash内容也删了
+c.git stash apply stash@{0}恢复指定的stash
+
+多人协作
+git remote 查看远程库的信息
+git remote -v 显示远程库更详细的信息
+
+推送分支，把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
+$ git push origin master
