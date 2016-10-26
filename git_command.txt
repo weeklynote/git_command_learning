@@ -164,5 +164,5 @@ IdentityFile------id_rsa的本地地址
 
 配置用户名、邮箱
 git config user.name "username"  
-git config user.email 'email'  
+git config user.email 'email'     
 
