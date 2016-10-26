@@ -162,3 +162,7 @@ IdentityFile------id_rsa的本地地址
 7.执行ssh -T git@github.com测试时候配置成功
 
 
+配置用户名、邮箱
+git config user.name "username"  
+git config user.email 'email'  
+
