@@ -161,4 +161,7 @@ HostName------真实的域名地址,如git@github.com:Weeklysoftware/weekly.git�
 IdentityFile------id_rsa的本地地址
 7.执行ssh -T git@github.com测试时候配置成功
 
+注意事项：
+对于使用多账号的情况，最好是在每个项目里面配置用户名和邮箱。不然提交代码的用户名将显示全局的用户名。
+
 
