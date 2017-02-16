@@ -165,3 +165,7 @@ IdentityFile------id_rsa的本地地址
 对于使用多账号的情况，最好是在每个项目里面配置用户名和邮箱。不然提交代码的用户名将显示全局的用户名。
 
 
+配置用户名、邮箱
+git config user.name "username"  
+git config user.email 'email'     
+
